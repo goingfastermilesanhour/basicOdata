@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="1.0" xmlns:edmx="http://schemas.microsoft.com/ado/2007/06/edmx"
+	xmlns:m="http://schemas.microsoft.com/ado/2007/08/dataservices/metadata" xmlns:sap="http://www.sap.com/Protocols/SAPData">
+	<edmx:DataServices m:DataServiceVersion="2.0">
+		<Schema Namespace="ZRG_BANKS_001_SRV" xml:lang="en" sap:schema-version="1" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
+			<EntityType Name="BANK" sap:content-version="1">
+				<Key><PropertyRef Name="BankKey"/></Key><Property Name="BankKey" Type="Edm.String" Nullable="false" MaxLength="15" sap:unicode="false" sap:label="Bank Key"/><Property Name="BankName" Type="Edm.String" MaxLength="60" sap:unicode="false" sap:label="Bank name"/><Property Name="Street" Type="Edm.String" MaxLength="35" sap:unicode="false" sap:label="Street"/><Property Name="City" Type="Edm.String" MaxLength="35" sap:unicode="false" sap:label="City"/><Property Name="State" Type="Edm.String" MaxLength="3" sap:unicode="false" sap:label="Region"/><Property Name="Country" Type="Edm.String" MaxLength="3" sap:unicode="false" sap:label="Bank Country"/><Property Name="BankNumber" Type="Edm.String" MaxLength="15" sap:unicode="false" sap:label="Bank number"/><Property Name="Branch" Type="Edm.String" MaxLength="40" sap:unicode="false" sap:label="Bank Branch"/><Property Name="RoutingNumber" Type="Edm.String" MaxLength="15" sap:unicode="false" sap:label="Rout.ctrl code"/><Property Name="CreatedBy" Type="Edm.String" MaxLength="12" sap:unicode="false" sap:label="Created by"/><Property Name="CreatedOn" Type="Edm.DateTime" Precision="7" sap:unicode="false" sap:label="Created on"/></EntityType>
+			<EntityContainer Name="ZRG_BANKS_001_SRV_Entities" m:IsDefaultEntityContainer="true" sap:supported-formats="atom json xlsx"><EntitySet Name="BANKS" EntityType="ZRG_BANKS_001_SRV.BANK" sap:searchable="true" sap:content-version="1"/></EntityContainer><atom:link rel="self"
+				href="https://webidecp-ed7669e12.dispatcher.eu2.hana.ondemand.com/destinations/S4H1809Gateway/sap/opu/odata/sap/ZRG_BANKS_001_SRV/$metadata"
+				xmlns:atom="http://www.w3.org/2005/Atom"/><atom:link rel="latest-version"
+				href="https://webidecp-ed7669e12.dispatcher.eu2.hana.ondemand.com/destinations/S4H1809Gateway/sap/opu/odata/sap/ZRG_BANKS_001_SRV/$metadata"
+				xmlns:atom="http://www.w3.org/2005/Atom"/></Schema>
+	</edmx:DataServices>
+</edmx:Edmx>
