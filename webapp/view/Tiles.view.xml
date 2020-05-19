@@ -3,7 +3,35 @@
 	<Shell id="shell">
 		<App id="app">
 			<pages>
-				<Page id="porc" navButtonPress="onNavBack" showNavButton="false">
+				<Page id="Tiles" title="This is the second page see routing" navButtonPress="onNavBack" showNavButton="true">
+				<GenericTile class="sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout" header="Sales Fulfillment Application Title" subheader="Subtitle"
+					press="press">
+					<TileContent unit="EUR" footer="Current Quarter">
+						<ImageContent src="sap-icon://home-share"/>
+					</TileContent>
+				</GenericTile>
+				<GenericTile class="sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout" header="Manage Activity Master Data Type" subheader="Subtitle"
+					press="press">
+					<TileContent>
+						<ImageContent src="test-resources/sap/m/demokit/sample/GenericTileAsLaunchTile/images/SAPLogoLargeTile_28px_height.png"/>
+					</TileContent>
+				</GenericTile>
+				<GenericTile class="sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout"
+					header="Manage Activity Master Data Type With a Long Title Without an Icon" subheader="Subtitle Launch Tile" mode="HeaderMode" press="press">
+					<TileContent unit="EUR" footer="Current Quarter"/>
+				</GenericTile>
+				<GenericTile class="sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout" header="Jessica D. Prince Senior Consultant" subheader="Department"
+					press="press">
+					<TileContent>
+						<ImageContent src="test-resources/sap/m/demokit/sample/GenericTileAsLaunchTile/images/ProfileImage_LargeGenTile.png"/>
+					</TileContent>
+				</GenericTile>
+				<GenericTile class="sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout" header="Right click to open in new tab" subheader="Link tile"
+					press="press">
+					<TileContent>
+						<ImageContent src="test-resources/sap/m/demokit/sample/GenericTileAsLaunchTile/images/SAPLogoLargeTile_28px_height.png"/>
+					</TileContent>
+				</GenericTile>
 				</Page>
 			</pages>
 		</App>

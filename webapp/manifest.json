@@ -93,10 +93,16 @@
 				"controlId": "app",
 				"clearControlAggregation": false
 			},
-			"routes": [{
+			"routes": [
+			{
 				"name": "TargetView1",
 				"pattern": "RouteView1",
 				"target": ["TargetView1"]
+			},
+			{	
+				"name": "Tiles",
+				"pattern": "Tiles",
+				"target": ["Tiles"]
 			}],
 			"targets": {
 				"TargetView1": {
@@ -105,6 +111,13 @@
 					"clearControlAggregation": false,
 					"viewId": "View1",
 					"viewName": "View1"
+				},
+				"Tiles": {
+					"viewType": "XML",
+					"transition": "slide",
+					"clearControlAggregation": false,
+					"viewId": "Tiles",
+					"viewName": "Tiles"
 				}
 			}
 		}

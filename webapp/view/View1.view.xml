@@ -1,30 +1,30 @@
-<mvc:View controllerName="rg.basicOdata.controller.View1" xmlns:l="sap.ui.layout" xmlns="sap.m" xmlns:core="sap.ui.core"
+<mvc:View controllerName="rg.basicOdata.controller.View1" displayBlock="true" xmlns:l="sap.ui.layout" xmlns="sap.m" xmlns:core="sap.ui.core"
 	xmlns:mvc="sap.ui.core.mvc" xmlns:smartFilterBar="sap.ui.comp.smartfilterbar" xmlns:smartTable="sap.ui.comp.smarttable" height="100%">
 	<Shell id="shell">
 		<App id="app">
 			<pages>
-				<Page id="Banci" navButtonPress="onNavBack" showNavButton="false">
-					<Toolbar design="Info" justify-content="space-around">
+				<Page id="Banci" title="My Root View" navButtonPress="onNavBack" showNavButton="false">
+					<Toolbar design="Info">
 						<Button text="About me" press="onClickInfo" icon="sap-icon://hint"></Button>
 						<Button text="LinkedIn profile" press="onLinkedin" icon="sap-icon://business-card"></Button>
 						<Button text="Xing Profile" press="onXing" icon="sap-icon://business-card"></Button>
-
+						<Button text="testRouting" press="onNavigate"></Button>
 					</Toolbar>
 					<l:Grid containerQuery="true">
-						<TileContent footer="Height" unit="Meters" class="sapUiSmallMargin" frameType="auto">
+						<TileContent footer="Height" unit="Meters" class="sapUiSmallMargin">
 							<NumericContent scale="m" value="1.88" valueColor="Error" indicator="Up"/>
 						</TileContent>
-						<TileContent footer="physical features" class="sapUiSmallMargin" frameType="auto">
+						<TileContent footer="physical features" class="sapUiSmallMargin">
 							<NumericContent value="3" icon="sap-icon://travel-expense"/>
 						</TileContent>
-						<TileContent footer="education" class="sapUiSmallMargin" frameType="auto">
+						<TileContent footer="education" class="sapUiSmallMargin">
 							<NumericContent value="Info" icon="sap-icon://education"/>
 						</TileContent>
-						<TileContent footer="New Notifications" class="sapUiSmallMargin" frameType="auto">
+						<TileContent footer="New Notifications" class="sapUiSmallMargin">
 							<FeedContent contentText="@@notify Great outcome of the Presentation today. The new functionality and the new design was well received."
 								subheader="about 1 minute ago in Computer Market" value="132"/>
 						</TileContent>
-						<TileContent footer="May 19, 2020" class="sapUiSmallMargin" frameType="auto">
+						<TileContent footer="May 19, 2020" class="sapUiSmallMargin">
 							<NewsContent contentText="The information in tiles is written in XML. The smartTable imported data from DB table via OData"
 								subheader="Created the OData service, linked it with Ui5"/>
 						</TileContent>

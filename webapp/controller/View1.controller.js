@@ -15,7 +15,10 @@ sap.ui.define([
 		// The application has to specify the entity set, 
 		// in which the new entity and the entity data is 
 		// to be created.
-
+		onNavigate: function (oEvent) {
+			var oRouter = sap.ui.core.UIComponent.getRouterFor(this);
+			oRouter.navTo("Tiles");
+		}, 
 		onClickInfo: function (oEvent) {
 			MessageBox.information("A little bit of bio", {
 				title: "What I did now",
@@ -71,7 +74,6 @@ sap.ui.define([
 			var pathToBank = selectedRow.getPath();
 			var oModel = this.getView().getModel();
 			oModel.setUseBatch(false);
-			debugger;
 			oModel.oHeaders["X-Requested-With"] = "X";
 			// csrf if we have token // return cu get din sap.
 			oModel.remove(pathToBank, {
