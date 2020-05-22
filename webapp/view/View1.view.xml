@@ -11,8 +11,8 @@
 						<Button text="testRouting" press="onNavigate"></Button>
 					</Toolbar>
 					<l:Grid containerQuery="true">
-						<TileContent footer="Height" unit="Meters" class="sapUiSmallMargin">
-							<NumericContent scale="m" value="1.88" valueColor="Error" indicator="Up"/>
+						<TileContent footer="{selectedRow.getObject().BankName}" unit="m" class="sapUiSmallMargin">
+							<NumericContent scale="m" value="30" valueColor="Error" indicator="Up"/>
 						</TileContent>
 						<TileContent footer="physical features" class="sapUiSmallMargin">
 							<NumericContent value="3" icon="sap-icon://travel-expense"/>

@@ -19,6 +19,7 @@ sap.ui.define([
 			var oRouter = sap.ui.core.UIComponent.getRouterFor(this);
 			oRouter.navTo("Tiles");
 		}, 
+		
 		onClickInfo: function (oEvent) {
 			MessageBox.information("A little bit of bio", {
 				title: "What I did now",
@@ -40,23 +41,158 @@ sap.ui.define([
 		onXing: function (oEvent) {
 			window.location.replace("https://www.xing.com/profile/Razvan_Gheghe/cv")
 		},
+		
 		onAddRow: function (oEvent) {
-			MessageBox.error("Cannot add new row.", {
-				title: "Error",
-				details: '<p><strong>This can happen if:</strong></p>\n' +
-					'<ul>' +
-					'<li>The developer got another project and cannot implement the add button :D</li>' +
-					'<li>A backend component is not <em>available</em></li>' +
-					'<li>Underlying system is down</li>' +
-					'<li>You probably do not have access to the system</li>' +
-					'</ul>' +
-					'<p>Get more help <a href="//www.sap.com" target="_top">here</a>.',
-				contentWidth: "100px"
-			});
+			// MessageBox.error("Cannot add new row.", {
+			// 	title: "Error",
+			// 	details: '<p><strong>This can happen if:</strong></p>\n' +
+			// 		'<ul>' +
+			// 		'<li>The developer got another project and cannot implement the add button :D</li>' +
+			// 		'<li>A backend component is not <em>available</em></li>' +
+			// 		'<li>Underlying system is down</li>' +
+			// 		'<li>You probably do not have access to the system</li>' +
+			// 		'</ul>' +
+			// 		'<p>Get more help <a href="//www.sap.com" target="_top">here</a>.',
+			// 	contentWidth: "100px"
+			// });
+			// debugger;
+			if (!this.newBanksDialog) {
+				this.newBanksDialog = sap.ui.xmlfragment("rg.basicOdata.view.addEditDialog", this);
+			}
+			this.getView().addDependent(this.newBanksDialog);
+			debugger;
+			var aItems = this.newBanksDialog.getContent()[0].getContent();
+			var oControl = aItems[15];
+			oControl.setText("Save");
+			this.newBanksDialog.open();
+		}, 
 
+		handleSaveBtnBook: function (oEvent) {
+			debugger;
+			var bCreate = true;
+			var oBank = {
+				BankKey: "",
+				BankName: "",
+				Street: "",
+				City: "",
+				State: "",
+				Country: "",
+				BankNumber: ""
+				// nrbank: 0
+			};
+			
+			var oSimpleForm = oEvent.getSource().getParent().getParent();
+			debugger;
+			var aItems = oSimpleForm.getFormElements();
+			
+			var oControl = aItems[0].getFields()[0];
+			if (oControl.getValue().length !== 0) {
+				oBank.BankKey = oControl.getValue();
+				oControl.setValueState("None");
+			} else {
+				bCreate = false;
+				oControl.setValueState("Error");
+			}
+			oControl = aItems[1].getFields()[0];
+			if (oControl.getValue().length !== 0) {
+				oBank.BankName = oControl.getValue();
+				oControl.setValueState("None");
+			} else {
+				bCreate = false;
+				oControl.setValueState("Error");
+			}
+			oControl = aItems[2].getFields()[0];
+			if (oControl.getValue().length !== 0) {
+				oBank.Street = oControl.getValue();
+				oControl.setValueState("None");
+			} else {
+				bCreate = false;
+				oControl.setValueState("Error");
+			}
+			oControl = aItems[3].getFields()[0];
+			if (oControl.getValue().length !== 0) {
+				oBank.City = oControl.getValue();
+				oControl.setValueState("None");
+			} else {
+				bCreate = false;
+				oControl.setValueState("Error");
+			}
+			oControl = aItems[4].getFields()[0];
+			if (oControl.getValue().length !== 0) {
+				oBank.State = oControl.getValue();
+				oControl.setValueState("None");
+			} else {
+				bCreate = false;
+				oControl.setValueState("Error");
+			}
+			oControl = aItems[5].getFields()[0];
+			if (oControl.getValue().length !== 0) {
+				oBank.Country = oControl.getValue();
+				oControl.setValueState("None");
+			} else {
+				bCreate = false;
+				oControl.setValueState("Error");
+			}
+			oControl = aItems[6].getFields()[0];
+			if (oControl.getValue().length !== 0) {
+				oBank.BankNumber = oControl.getValue();
+				oControl.setValueState("None");
+			} else {
+				bCreate = false;
+				oControl.setValueState("Error");
+			}
+			
+			
+			this.getView().getModel().setUseBatch(false);
+			this.getView().getModel().oHeaders["X-Requested-With"] = "X";
+			// debugger;
+			var oButtonPressed = this.newBanksDialog.getContent()[0].getContent()[15]; //the save button
+			var oButtonText = oButtonPressed.getText();
+			if (oButtonText === "Save") {
+				if (bCreate) {
+					this.getView().getModel().create("/BANKS", oBank, {
+						success: function () {
+							MessageToast.show("Book inserted!");
+						},
+						error: function () {
+							MessageToast.show("Problem with inserting bank information!");
+						}
+					});
+
+					this.newBanksDialog.close();
+					for (var i = 0; i < aItems.length - 1; i++) {
+						aItems[i].getFields()[0].setValue("");
+					}
+				}
+			} else {
+				if (bCreate) {
+					var sPath = this.getView().getContent()[0].getContent()[0].getTable().getSelectedContexts()[0].getPath();
+					this.getView().getModel().update(sPath, oBank, {
+						success: function () {
+							MessageToast.show("Bank updated!");
+						},
+						error: function () {
+							MessageToast.show("Update error!");
+						}
+					});
+				}
+			}
+		}, 
+ 
+		handleCancelBtnPress: function (oEvent) {
+			// debugger;
+			var oSimpleForm = oEvent.getSource().getParent().getParent();
+			var aItems = oSimpleForm.getFormElements();
+			for (var i = 0; i < aItems.length - 1; i++) {
+				aItems[i].getFields()[0].setValue("");
+			}
+			this.newBanksDialog.close();
 		},
+		
 		onEditRow: function (oEvent) {
+			
 			MessageBox.error("Cannot edit row.", {
+	
 				title: "Error",
 				details: '<p><strong>This can happen if:</strong></p>\n' +
 					'<ul>' +
@@ -69,8 +205,10 @@ sap.ui.define([
 				contentWidth: "100px"
 			});
 		},
+		
 		onDeleteRow: function (oEvent) {
-			var selectedRow = oEvent.getSource().getParent().getParent().getContent()[0].getTable().getSelectedContexts()[0];
+		debugger;
+			var selectedRow = oEvent.getSource().getParent().getParent().getContent()[2].getTable().getSelectedContexts()[0];
 			var pathToBank = selectedRow.getPath();
 			var oModel = this.getView().getModel();
 			oModel.setUseBatch(false);
@@ -88,3 +226,5 @@ sap.ui.define([
 
 	});
 });
+
+
