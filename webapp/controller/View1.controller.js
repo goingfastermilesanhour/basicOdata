@@ -9,6 +9,7 @@ sap.ui.define([
 	return Controller.extend("rg.basicOdata.controller.View1", {
 		// onInit: function () {
 		// },
+		// Teststestest
 		// The create function triggers a POST request to
 		// an OData service which was specified at creation 
 		// of the OData model. 
